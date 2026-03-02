@@ -10,17 +10,16 @@ export default function App() {
     const [entries, setEntries] = useState([])
     const [showForm, setShowForm] = useState(false)
 
-    // Load entries from localStorage on mount
     useEffect(() => {
         const savedEntries = localStorage.getItem('travelEntries')
         if (savedEntries) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setEntries(JSON.parse(savedEntries))
         } else {
             setEntries(defaultData)
         }
     }, [])
 
-    // Save entries to localStorage whenever they change
     useEffect(() => {
         if (entries.length > 0) {
             localStorage.setItem('travelEntries', JSON.stringify(entries))
